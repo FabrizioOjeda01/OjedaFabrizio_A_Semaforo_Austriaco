@@ -1,9 +1,10 @@
-int rosso1 = 2;
+int rosso1  = 2;
 int giallo1 = 3;
-int verde1 = 4;
-int rosso2 = 8;
+int verde1  = 4;
+
+int rosso2  = 8;
 int giallo2 = 9;
-int verde2 = 10;
+int verde2  = 10;
 
 void Lampeggia(int led, int ritardo, int tick){
   for (int i = 0; i <= tick; i++){
@@ -43,10 +44,9 @@ void loop() {
  
  delay (2000);
 
- 
+ digitalWrite (rosso2, LOW);
  digitalWrite (giallo1, LOW);
- digitalWrite (rosso1, HIGH)
-
+ digitalWrite (rosso1, HIGH);
  digitalWrite (giallo2, LOW);
  digitalWrite (verde2, HIGH);
 
