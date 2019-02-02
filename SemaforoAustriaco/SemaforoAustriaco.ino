@@ -5,6 +5,7 @@ int verde1  = 4;
 int rosso2  = 8;
 int giallo2 = 9;
 int verde2  = 10;
+int numLampeggi;
 
 void Lampeggia(int led, int ritardo, int tick){
   for (int i = 0; i <= tick; i++){
@@ -23,6 +24,12 @@ void setup() {
   pinMode(rosso2, OUTPUT);
   pinMode(giallo2, OUTPUT);
   pinMode(verde2, OUTPUT);
+
+  Serial.begin(9600);
+
+  Serial.print("quanti lampeggi?");
+  while (Serial.available == 0) {};
+  numLampeggi = Serial.readString().toInt();
 }
 
 void loop() {
@@ -30,7 +37,6 @@ void loop() {
  digitalWrite (rosso1, LOW);
  digitalWrite (giallo1, LOW);
  digitalWrite (verde1, HIGH);
-
  digitalWrite (rosso2, HIGH);
  digitalWrite (giallo2, LOW);
  
@@ -39,7 +45,6 @@ void loop() {
  Lampeggia(verde1, 350, 4);
  digitalWrite (verde1, LOW);
  digitalWrite (giallo1, HIGH);
-
  digitalWrite (giallo2, HIGH);
  
  delay (2000);
@@ -51,10 +56,11 @@ void loop() {
  digitalWrite (verde2, HIGH);
 
  delay (2000);
+ 
  Lampeggia (verde2, 350, 4);
  digitalWrite (giallo1, HIGH);
-
  digitalWrite (verde2, LOW);
  digitalWrite (giallo2, HIGH);
-  delay (2000);
+ 
+ delay (2000);
 }
