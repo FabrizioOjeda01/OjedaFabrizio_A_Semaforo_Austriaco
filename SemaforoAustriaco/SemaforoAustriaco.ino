@@ -50,11 +50,11 @@ void loop() {
  digitalWrite (giallo2, LOW);
  digitalWrite (verde2, HIGH);
 
- 
- delay (2000)
+ delay (2000);
  Lampeggia (verde2, 350, 4);
  digitalWrite (giallo1, HIGH);
 
  digitalWrite (verde2, LOW);
  digitalWrite (giallo2, HIGH);
+  delay (2000);
 }
