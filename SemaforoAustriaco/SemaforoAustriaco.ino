@@ -11,7 +11,7 @@ int numTLamp    = 0; //Variabili per il seriale
 int tVerde      = 0;
 int tGiallo     = 0;
 
-void Lampeggia(int led, int numTLamp, int numLampeggi){
+void Lampeggia(int led, int numTLamp, int numLampeggi){  //Metodo per i lampeggi
   for (int i = 0; i <= numLampeggi; i++){
     delay(numTLamp);
     digitalWrite(led, HIGH);
@@ -19,6 +19,13 @@ void Lampeggia(int led, int numTLamp, int numLampeggi){
     digitalWrite(led, LOW);
   }
 } 
+
+int Seriale(String frase, int var){  //Metodo per il seriale
+  Serial.println(frase); 
+  while (Serial.available() == 0) {};
+  var = Serial.readString().toInt();
+  return var;
+}
 
 void setup() {
   // put your setup code here, to run once:
@@ -30,21 +37,15 @@ void setup() {
   pinMode(verde2, OUTPUT);
   Serial.begin(9600);
   
-  Serial.println("Quanti lampeggi deve fare il verde?"); //Legge in input quanti lampeggi deve fare il verde
-  while (Serial.available() == 0) {};
-  numLampeggi = Serial.readString().toInt();
-
-  Serial.println("Quanto devono durare i lampeggi?");   //Legge in input la durata di ogni lampeggio
-  while (Serial.available() == 0) {};
-  numTLamp = Serial.readString().toInt();
+  //Legge in input i valori della durata e del lampeggio del verde, e della durata del giallo
+  numLampeggi = Seriale("Quanti lampeggi deve fare il verde?", numLampeggi);
   
-  Serial.println("Quanto tempo dura il verde?");        //Legge in input quanto tempo dura il verde
-  while (Serial.available() == 0) {};
-  tVerde = Serial.readString().toInt();
+  numTLamp    = Seriale("Quanto devono durare i lampeggi?", numTLamp);
+  
+  tVerde      = Seriale("Quanto tempo dura il verde?", tVerde);
 
-  Serial.println("Quanto tempo dura il giallo?");       //Legge in input quanto tempo dura il giallo
-  while (Serial.available() == 0) {};
-  tGiallo = Serial.readString().toInt();
+  tGiallo     = Seriale("Quanto tempo dura il giallo?", tGiallo);
+  
 }
 
 void loop() {
